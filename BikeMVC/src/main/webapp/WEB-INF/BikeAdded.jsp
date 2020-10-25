@@ -15,7 +15,7 @@
 	<form:input class="input" path="brand" placeholder="Enter the Brand:"/>
 	<br>
 	<form:label path="model">Model:</form:label><br>
-	<form:input class="input" path="Model" placeholder="Enter the Model:"/>
+	<form:input class="input" path="model" placeholder="Enter the Model:"/>
 	<br>
 	<form:label path="description">Description:</form:label><br>
 	<form:input class="input" path="description" placeholder="Enter the Description:"/>
