@@ -25,6 +25,18 @@ public class BikeDAOImpl implements BikeDAO {
 		
 	}
 	@Override
+	public List<Bike> findBikesFromSearch(String search) {
+		String jpql = "SELECT b FROM Bike b"
+				+ " WHERE brand LIKE :brand "
+				+ "OR model LIKE :model "
+				+ "OR description LIKE :desc";
+		
+				List<Bike> emps = em.createQuery(jpql, Bike.class).setParameter("brand", "%" + search + "%").setParameter("model", "%" + search + "%").setParameter("desc", "%" + search + "%").getResultList();
+		return emps;
+		
+	}
+	
+	@Override
 	public Bike findById(int id) {
 		return em.find(Bike.class, id);
 		
@@ -32,39 +44,49 @@ public class BikeDAOImpl implements BikeDAO {
 	
 	@Override
 	public Bike create(Bike bike) {
-		em.getTransaction().begin();
-		try {//try block not necessary but OK
+//		em.getTransaction().begin();
+//		try {//try block not necessary but OK
 			em.persist(bike);
-			em.flush();
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			em.getTransaction().rollback();
-		}
-		em.close();
+			System.out.println(bike);
+//			em.flush();
+//			em.getTransaction().commit();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			em.getTransaction().rollback();
+//		}
+//		em.close();
 		return bike;
 	}
 
 	@Override
 	public Bike update(int id, Bike bike) {
 		Bike bikeToUpdate = em.find(Bike.class, id);
-		em.getTransaction().begin();
+//		em.getTransaction().begin();
 		bikeToUpdate.setBrand(bike.getBrand());
 		bikeToUpdate.setModel(bike.getModel());
+		bikeToUpdate.setDescription(bike.getDescription());
+		bikeToUpdate.setBarType(bike.getBarType());
+		bikeToUpdate.setWheelSize(bike.getWheelSize());
+		bikeToUpdate.setRimWidth(bike.getRimWidth());
+		bikeToUpdate.setSuspType(bike.getSuspType());
+		bikeToUpdate.setDrivenG(bike.getDrivenG());
+		bikeToUpdate.setDrivingG(bike.getDrivingG());
+		bikeToUpdate.setGender(bike.getGender());
+		bikeToUpdate.setImgURL(bike.getImgURL());
 		em.persist(bikeToUpdate);
-		em.flush();
-		em.getTransaction().commit();
+//		em.flush();
+//		em.getTransaction().commit();
 		return bikeToUpdate;
 	}
 
 	@Override
 	public boolean destroy(int id) {
 		Bike bikeToDelete = em.find(Bike.class, id);
-		em.getTransaction().begin();
+//		em.getTransaction().begin();
 		em.remove(bikeToDelete);
 		boolean bikeDeleted = !em.contains(bikeToDelete);
-		em.flush();
-		em.getTransaction().commit();
+//		em.flush();
+//		em.getTransaction().commit();
 		
 		return bikeDeleted;
 	}

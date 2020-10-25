@@ -14,5 +14,7 @@ public interface BikeDAO {
 	List<Bike> findAll();
 	Bike findById(int id);
 
+	List<Bike> findBikesFromSearch(String search);
+
 
 }
