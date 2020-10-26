@@ -77,8 +77,8 @@
 	<br>
 	<form action="confirmBikeDelete.do" method="POST">
 	<strong>Please enter bike ID to confirm bike deleted:</strong><br>
-	<input class="input" type="number" name="bid">
-		<button type="submit" name="filmId" value="${bike.id }">Delete
+	<input class="input" type="number" min="4" name="bid" placeholder="Entry 1-3 may not be deleted">
+		<button type="submit" name="bid" value="${bike.id }">Delete
 			Bike</button>
 	</form>
 	<br>
