@@ -87,13 +87,39 @@ public class BikeController {
 				return mv;
 			}
 			
-			@RequestMapping(path="confirmFilmDelete", method=RequestMethod.POST)
+			@RequestMapping(path="confirmBikeDelete", method=RequestMethod.POST)
 			public ModelAndView confirmDelete(@RequestParam("bid")int bid) {
 				ModelAndView mv = new ModelAndView();
 				dao.destroy(bid);
 //				mv.setViewName("ConfirmationPage");
-				mv.setViewName("DeleteFilmResult");
+				mv.setViewName("DeleteBikeResult");
 				return mv;				
 			}
+			@RequestMapping(path="getNewBikeInfo.do", method=RequestMethod.GET)
+			  public ModelAndView updateBike(@RequestParam("bid") int bid) {
+			    ModelAndView mv = new ModelAndView();
+			    mv.addObject("bike", dao.findById(bid));
+			    mv.setViewName("Update");
+			    return mv;
+			  }
+			@RequestMapping(path="editBike.do", method= RequestMethod.POST)
+			public ModelAndView updatedBike(Bike bike, RedirectAttributes redir) {
+				ModelAndView mv = new ModelAndView();
+				System.out.println(bike);
+				Bike updatedBike = dao.update(bike.getId(),bike);
+				System.out.println(updatedBike);
+//				System.out.println("IN CONTROLLER BEFORE REDIRECT");
+				
+				redir.addFlashAttribute("bike", updatedBike);
+				mv.setViewName("redirect:Update.do");
+				return mv;
+			}
+			@RequestMapping(path="Update.do", method=RequestMethod.GET)
+			  public ModelAndView Update() {
+			    ModelAndView mv = new ModelAndView();
+			    mv.addObject("Confirmation", "Updated");
+			    mv.setViewName("ConfirmationPage");
+			    return mv;
+			  }
 		  
 }

@@ -15,14 +15,30 @@
 
  <c:forEach var="bike" items="${bikes}">
   <h5>${bike.brand} (${bike.model})		${bike.wheelSize} cm </h5>
-  <p>${bike.description}<br>
+  <p>${bike.description}<br> ${bike.id }
   	</p>
+  			<form action="getNewBikeInfo.do" method="GET">
+			<button type="submit" name="bid" value="${bike.id }">Update
+				Bike Information</button>
+		</form>
+		<form action="deleteBike.do" method="GET">
+			<button type="submit" name="bid" value="${bike.id }">Delete
+				Bike</button>
+		</form>
    </c:forEach>
 			</c:if>
 	<c:if test="${!empty bike}">
   <h5>${bike.brand} (${bike.model})		${bike.wheelSize} cm </h5>
-  <p>${bike.description}<br>
+  <p>${bike.description}<br> ${bike.id }
   	</p>
+  			<form action="getNewBikeInfo.do" method="GET">
+			<button type="submit" name="bid" value="${bike.id }">Update
+				Bike Information</button>
+		</form>
+		<form action="deleteBike.do" method="GET">
+			<button type="submit" name="bid" value="${bike.id }">Delete
+				Bike</button>
+		</form>
 			</c:if>
   	<a href="/" class="btn btn-secondary" role="button">Back
 			to Home</a>
