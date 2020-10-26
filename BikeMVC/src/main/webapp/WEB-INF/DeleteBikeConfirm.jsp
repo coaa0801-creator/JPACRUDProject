@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Confirmation</title>
+<title>Delete Film Results</title>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${! empty bike }">
-			<h1>Bike ${Confirmation }</h1>
-			<table>
-				<tr>
+	<h1>Delete Film Results</h1>
+	<br>
+	
+	<c:out value="${bid }" />
+	<c:if test="${empty bike }">Bike has been deleted</c:if>
+<table>
+					<tr>
 					<td>ID:</td>
 					<td>${bike.id }</td>
 				</tr>
@@ -67,22 +68,28 @@
 				</tr>
 
 			</table>
-		</c:when>
- 	<c:otherwise>
- 			<h1>We are sorry. Your entry was not ${Confirmation }</h1>
-		<br>
-		Please try again
- 	</c:otherwise>
-	
-		
-	</c:choose>
-	
+	<form action="updateBike.do" method="GET">
+	<!-- <strong>Please enter film ID to confirm update:</strong>
+	<input class="input" min="0" type="number" name="filmId"> -->
+		<button type="submit" name="bid" value="${bike.id }">Update
+			Bike Information</button>
+	</form>
+	<br>
+	<form action="confirmBikeDelete.do" method="POST">
+	<strong>Please enter bike ID to confirm bike deleted:</strong><br>
+	<input class="input" type="number" name="bid">
+		<button type="submit" name="filmId" value="${bike.id }">Delete
+			Bike</button>
+	</form>
+	<br>
 
-<br>
-
-
+	<br>
+	<br>
 	<p>
 		<a href="/" class="btn btn-secondary" role="button">Back
 			to Home</a>
 	</p>
+
+
 </body>
+</html>

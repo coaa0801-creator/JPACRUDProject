@@ -83,15 +83,14 @@ public class BikeController {
 				ModelAndView mv = new ModelAndView();
 				Bike bikeToDelete = dao.findById(id);
 				mv.addObject("bike", bikeToDelete);
-				mv.setViewName("DeleteBike");
+				mv.setViewName("DeleteBikeConfirm");
 				return mv;
 			}
 			
-			@RequestMapping(path="confirmBikeDelete", method=RequestMethod.POST)
+			@RequestMapping(path="confirmBikeDelete.do", method=RequestMethod.POST)
 			public ModelAndView confirmDelete(@RequestParam("bid")int bid) {
 				ModelAndView mv = new ModelAndView();
 				dao.destroy(bid);
-//				mv.setViewName("ConfirmationPage");
 				mv.setViewName("DeleteBikeResult");
 				return mv;				
 			}
