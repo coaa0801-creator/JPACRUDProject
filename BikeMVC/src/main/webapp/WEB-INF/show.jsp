@@ -15,7 +15,8 @@
 
  <c:forEach var="bike" items="${bikes}">
   <h5>${bike.brand} (${bike.model})		${bike.wheelSize} cm </h5>
-  <p>${bike.description}<br> ${bike.id }
+ <img src="${bike.imgURL}" width="115" height="101">
+  <p>${bike.description}<br> 
   	</p>
   			<form action="getNewBikeInfo.do" method="GET">
 			<button type="submit" name="bid" value="${bike.id }">Update
@@ -29,7 +30,8 @@
 			</c:if>
 	<c:if test="${!empty bike}">
   <h5>${bike.brand} (${bike.model})		${bike.wheelSize} cm </h5>
-  <p>${bike.description}<br> ${bike.id }
+  <img src="${bike.imgURL}" width="115" height="101">
+  <p>${bike.description}<br> 
   	</p>
   			<form action="getNewBikeInfo.do" method="GET">
 			<button type="submit" name="bid" value="${bike.id }">Update
