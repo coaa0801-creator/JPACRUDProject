@@ -2,7 +2,7 @@
 <img align="left" src="http://skilldistillery.com/downloads/sd_logo.jpg">
 
 ## Aaron Cottrell
-
+<br/>
 
 ## Overview
 Use SpringMVC to interact with MYSQL database on a hosted site.
